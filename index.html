@@ -4,257 +4,806 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marcelle Larissa - Développeuse FullStack</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --accent: #f093fb;
+            --dark: #2d3748;
+            --light: #f7fafc;
+            --text: #2d3748;
+            --text-light: #718096;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
             line-height: 1.6;
-            color: #333;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--text);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             min-height: 100vh;
         }
-        
-        .container {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            overflow: hidden;
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
         }
-        
-        header {
-            background: #2c3e50;
-            color: white;
-            padding: 40px 20px;
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Sections communes */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
             text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        
-        .profile-section {
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
         }
-        
-        .profile-photo {
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,0 1000,1000"/></svg>');
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .profile-container {
+            position: relative;
             width: 200px;
             height: 200px;
+            margin: 0 auto 2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .profile-container:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
-            border: 5px solid #3498db;
             object-fit: cover;
+            border: 4px solid white;
+            box-shadow: var(--shadow);
         }
-        
-        .profile-info {
-            text-align: left;
-        }
-        
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
+
+        .change-photo-btn {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: var(--accent);
             color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        
-        .title {
-            font-size: 1.3em;
-            color: #ecf0f1;
-            margin-bottom: 15px;
+
+        .change-photo-btn:hover {
+            transform: scale(1.1);
         }
-        
-        main {
-            padding: 40px;
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
         }
-        
-        section {
-            margin-bottom: 40px;
+
+        .hero .title {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
         }
-        
-        h2 {
-            color: #2c3e50;
-            border-bottom: 3px solid #3498db;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            font-size: 1.8em;
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
         }
-        
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
+            gap: 1.5rem;
         }
-        
+
         .skill-category {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 4px solid #3498db;
-        }
-        
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-        
-        .project-card {
             background: white;
-            border: 1px solid #e1e8ed;
-            border-radius: 10px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
         }
-        
-        .project-card:hover {
+
+        .skill-category:hover {
             transform: translateY(-5px);
         }
-        
-        .project-card h3 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-            font-size: 1.3em;
+
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
         }
-        
-        .project-link {
-            display: inline-block;
-            background: #3498db;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            margin-top: 15px;
-            transition: background 0.3s ease;
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
         }
-        
-        .project-link:hover {
-            background: #2980b9;
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
         }
-        
-        .contact-links {
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-        
-        .contact-link {
-            background: #27ae60;
+            align-items: center;
+            justify-content: center;
             color: white;
-            padding: 12px 25px;
-            border-radius: 25px;
-            text-decoration: none;
-            transition: background 0.3s ease;
+            font-size: 3rem;
         }
-        
-        .contact-link:hover {
-            background: #219a52;
+
+        .project-content {
+            padding: 1.5rem;
         }
-        
+
+        .project-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .project-tech {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* Experience Section */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--primary);
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            position: relative;
+            width: 45%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 55%;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -50px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -50px;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Footer */
         footer {
-            text-align: center;
-            padding: 20px;
-            background: #34495e;
+            background: var(--dark);
             color: white;
-            margin-top: 40px;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
         }
-        
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .profile-section {
-                flex-direction: column;
-                text-align: center;
+            .nav-links {
+                display: none;
             }
-            
-            h1 {
-                font-size: 2em;
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 70px;
+            }
+
+            .timeline-content::before {
+                left: 20px !important;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="profile-section">
-                <img src="images/05fedfd-8eae-4778-9870-1c2dff8bd6f7.jpeg" alt="Photo de Marcelle Larissa" class="profile-photo">
-                <div class="profile-info">
-                    <h1>Marcelle Larissa Tankui Tchouamouo</h1>
-                    <div class="title">Développeuse FullStack | Spécialisée FinTech et Systèmes Distribués</div>
-                    <p>Diplômée en Génie Logiciel, passionnée par la création de solutions innovantes</p>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Marcelle Larissa</div>
+            <ul class="nav-links">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#apropos">À Propos</a></li>
+                <li><a href="#projets">Projets</a></li>
+                <li><a href="#experience">Expérience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="hero">
+        <div class="hero-content">
+            <div class="profile-container">
+                <img src="images/05fedfd-8eae-4778-9870-1c2dff8bd6f7.jpeg" alt="Marcelle Larissa" class="profile-image" id="profileImage">
+                <button class="change-photo-btn" onclick="changeProfilePhoto()">
+                    <i class="fas fa-camera"></i>
+                </button>
+            </div>
+            <h1>Marcelle Larissa Tankui Tchouamouo</h1>
+            <div class="title">Développeuse FullStack | Spécialisée FinTech & Systèmes Distribués</div>
+            <div class="cta-buttons">
+                <a href="#projets" class="btn btn-primary">
+                    <i class="fas fa-rocket"></i>Voir mes Projets
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <i class="fas fa-paper-plane"></i>Me Contacter
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="apropos">
+        <h2 class="section-title">À Propos de Moi</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Diplômée en Génie Logiciel, je suis passionnée par la création de solutions innovantes dans la FinTech et les systèmes distribués. Mon expertise couvre le développement d'applications web sécurisées, la conception d'APIs robustes et l'intégration de protocoles complexes.</p>
+                <p>Je m'efforce constamment d'élargir mes compétences et de rester à jour avec les dernières technologies pour fournir des solutions optimales et évolutives.</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Backend</h3>
+                    <p>Node.js, Express, Django, PHP</p>
+                </div>
+                <div class="skill-category">
+                    <h3>Frontend</h3>
+                    <p>React.js, JavaScript ES6+, HTML5, CSS3, Bootstrap</p>
+                </div>
+                <div class="skill-category">
+                    <h3>Bases de données</h3>
+                    <p>MongoDB, MySQL, Redis</p>
+                </div>
+                <div class="skill-category">
+                    <h3>Outils & Méthodes</h3>
+                    <p>Git, GitHub, Postman, APIs REST, Conception UML</p>
                 </div>
             </div>
-        </header>
+        </div>
+    </section>
 
-        <main>
-            <section id="competences">
-                <h2>Compétences Techniques</h2>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3>Backend</h3>
-                        <p>Node.js, Express, Django, PHP</p>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Frontend</h3>
-                        <p>React.js, JavaScript ES6+, HTML5, CSS3, Bootstrap</p>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Bases de données</h3>
-                        <p>MongoDB, MySQL, Redis</p>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Outils & Méthodologies</h3>
-                        <p>Git, GitHub, Postman, APIs REST, Conception UML</p>
+    <!-- Projects Section -->
+    <section id="projets">
+        <h2 class="section-title">Mes Projets</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <div class="project-content">
+                    <h3>Gestion des Plantes d'Intérieur</h3>
+                    <div class="project-tech">React.js · Node.js · MongoDB</div>
+                    <p>Application complète de suivi et gestion des plantes avec système de rappels d'arrosage et analytics de croissance.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/MarcelleT01/plant-care-app" class="btn btn-primary">
+                            <i class="fab fa-github"></i>Code
+                        </a>
                     </div>
                 </div>
-            </section>
+            </div>
 
-            <section id="projets">
-                <h2>Projets</h2>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <h3>Application de Gestion des Plantes d'Intérieur</h3>
-                        <p><strong>Technologies :</strong> React.js, Node.js, MongoDB</p>
-                        <p>Application complète de suivi et gestion des plantes d'intérieur avec système de rappels.</p>
-                        <a href="https://github.com/MarcelleT01/plant-care-app" class="project-link">Voir le code</a>
-                    </div>
-                    
-                    <div class="project-card">
-                        <h3>Application de Paiement de Factures</h3>
-                        <p><strong>Technologies :</strong> React.js, Node.js, API Campay</p>
-                        <p>Interface de paiement sécurisée pour transactions mobiles avec intégration API.</p>
-                        <a href="https://github.com/MarcelleT01/app-paiement-facture" class="project-link">Voir le code</a>
-                    </div>
-                    
-                    <div class="project-card">
-                        <h3>API DailyQuotes</h3>
-                        <p><strong>Technologies :</strong> Node.js, MongoDB</p>
-                        <p>API REST complète pour la gestion de citations inspirantes avec documentation.</p>
-                        <a href="https://github.com/MarcelleT01/dailyquotes-api" class="project-link">Voir le code</a>
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-money-bill-wave"></i>
+                </div>
+                <div class="project-content">
+                    <h3>Paiement de Factures</h3>
+                    <div class="project-tech">React.js · Node.js · API Campay</div>
+                    <p>Interface de paiement sécurisée pour transactions mobiles avec intégration de l'API Campay.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/MarcelleT01/app-paiement-facture" class="btn btn-primary">
+                            <i class="fab fa-github"></i>Code
+                        </a>
                     </div>
                 </div>
-            </section>
+            </div>
 
-            <section id="contact">
-                <h2>Contact</h2>
-                <p>N'hésitez pas à me contacter pour discuter de vos projets :</p>
-                <div class="contact-links">
-                    <a href="mailto:mtchouamouo@gmail.com" class="contact-link">Email</a>
-                    <a href="tel:+237692829031" class="contact-link">Téléphone</a>
-                    <a href="https://github.com/MarcelleT01" class="contact-link">GitHub</a>
-                    <a href="https://linkedin.com/in/marcelle-tchouamouo" class="contact-link">LinkedIn</a>
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-quote-right"></i>
                 </div>
-            </section>
-        </main>
+                <div class="project-content">
+                    <h3>API DailyQuotes</h3>
+                    <div class="project-tech">Node.js · MongoDB · Postman</div>
+                    <p>API REST complète pour la gestion de citations inspirantes avec documentation détaillée.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/MarcelleT01/dailyquotes-api" class="btn btn-primary">
+                            <i class="fab fa-github"></i>Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <footer>
-            <p>Des interfaces utilisateur aux architectures backend - je conçois des solutions techniques robustes et évolutives</p>
-        </footer>
-    </div>
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2 class="section-title">Expérience Professionnelle</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Localhost Academy</h3>
+                    <div class="timeline-date">Juin 2023 - Octobre 2023</div>
+                    <p>Développement d'une application web de gestion et suivi des apprenants avec fonctionnalités CRUD, recherche/filtrage et tableau de bord.</p>
+                    <div class="project-tech">PHP · JavaScript · MySQL · Bootstrap</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Regard'Afrik TV</h3>
+                    <div class="timeline-date">Avril 2025 - Juillet 2025</div>
+                    <p>Conception et développement d'une plateforme web multi-chaines avec intégration du protocole HLS pour la diffusion de contenus vidéo.</p>
+                    <div class="project-tech">HLS · UML · Streaming · Conception</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Contact</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div>
+                        <h3>Email</h3>
+                        <p>mtchouamouo@gmail.com</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div>
+                        <h3>Téléphone</h3>
+                        <p>(+237) 692829031</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <div>
+                        <h3>GitHub</h3>
+                        <p>MarcelleT01</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <div>
+                        <h3>LinkedIn</h3>
+                        <p>Marcelle Tchouamouo</p>
+                    </div>
+                </div>
+            </div>
+
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Nom</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i>Envoyer le Message
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/MarcelleT01"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/marcelle-tchouamouo"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:mtchouamouo@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p>&copy; 2024 Marcelle Larissa Tankui Tchouamouo. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        // Changement de photo de profil
+        function changeProfilePhoto() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            
+            input.onchange = function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        document.getElementById('profileImage').src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+            
+            input.click();
+        }
+
+        // Navigation mobile
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Formulaire de contact
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Merci pour votre message ! Je vous répondrai très rapidement.');
+            this.reset();
+        });
+
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observer les éléments à animer
+        document.querySelectorAll('.skill-category, .project-card, .timeline-content, .contact-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
