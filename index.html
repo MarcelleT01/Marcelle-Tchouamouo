@@ -3,19 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marcelle Larissa - Développeuse FullStack</title>
+    <title>Marcelle Tchouamouo - Développeuse FullStack</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #667eea;
-            --secondary: #764ba2;
-            --accent: #f093fb;
-            --dark: #2d3748;
-            --light: #f7fafc;
-            --text: #2d3748;
-            --text-light: #718096;
-            --shadow: 0 10px 30px rgba(0,0,0,0.1);
-            --transition: all 0.3s ease;
+            --primary: #6C63FF;
+            --primary-dark: #564FD8;
+            --secondary: #FF6584;
+            --accent: #36D1DC;
+            --dark: #2A2D43;
+            --light: #F8F9FF;
+            --text: #2A2D43;
+            --text-light: #6C757D;
+            --white: #FFFFFF;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            --gradient-dark: linear-gradient(135deg, var(--primary-dark) 0%, #5B86E5 100%);
+            --shadow: 0 10px 30px rgba(108, 99, 255, 0.15);
+            --shadow-dark: 0 15px 40px rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --border-radius: 16px;
         }
 
         * {
@@ -29,45 +36,153 @@
         }
 
         body {
-            font-family: 'Inter', 'Segoe UI', sans-serif;
-            line-height: 1.6;
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
             color: var(--text);
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: var(--white);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(108, 99, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-5px);
         }
 
         /* Navigation */
         .navbar {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            padding: 1rem 0;
-            box-shadow: var(--shadow);
+            padding: 20px 0;
+            transition: var(--transition);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar.scrolled {
+            padding: 15px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
         }
 
         .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
             font-weight: 700;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 35px;
             list-style: none;
         }
 
@@ -79,10 +194,6 @@
             position: relative;
         }
 
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -90,8 +201,12 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--primary);
+            background: var(--gradient);
             transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
         }
 
         .nav-links a:hover::after {
@@ -102,22 +217,7 @@
             display: none;
             font-size: 1.5rem;
             cursor: pointer;
-        }
-
-        /* Sections communes */
-        section {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--primary);
         }
 
         /* Hero Section */
@@ -125,41 +225,92 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
             position: relative;
+            background: var(--light);
             overflow: hidden;
         }
 
         .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,0 1000,1000"/></svg>');
+            top: -50%;
+            right: -20%;
+            width: 700px;
+            height: 700px;
+            border-radius: 50%;
+            background: var(--gradient);
+            opacity: 0.05;
+            z-index: 0;
         }
 
         .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
             position: relative;
             z-index: 2;
-            max-width: 800px;
+        }
+
+        .hero-text {
+            max-width: 600px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(108, 99, 255, 0.1);
+            color: var(--primary);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-title span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 35px;
+            max-width: 500px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
         }
 
         .profile-container {
             position: relative;
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 2rem;
-            cursor: pointer;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: var(--gradient);
+            padding: 8px;
+            box-shadow: var(--shadow-dark);
             transition: var(--transition);
         }
 
         .profile-container:hover {
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
 
         .profile-image {
@@ -167,173 +318,178 @@
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid white;
-            box-shadow: var(--shadow);
+            border: 4px solid var(--white);
         }
 
         .change-photo-btn {
             position: absolute;
-            bottom: 10px;
-            right: 10px;
-            background: var(--accent);
-            color: white;
+            bottom: 30px;
+            right: 30px;
+            background: var(--white);
+            color: var(--primary);
             border: none;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             cursor: pointer;
             transition: var(--transition);
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: var(--shadow);
+            z-index: 10;
         }
 
         .change-photo-btn:hover {
             transform: scale(1.1);
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .hero .title {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-primary {
-            background: white;
-            color: var(--primary);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            background: var(--primary);
+            color: var(--white);
         }
 
         /* About Section */
+        .about {
+            background: var(--white);
+        }
+
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: 70px;
             align-items: center;
         }
 
         .about-text {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: var(--text-light);
         }
 
-        .skills-grid {
+        .about-text p {
+            margin-bottom: 20px;
+        }
+
+        .skills-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+            gap: 25px;
         }
 
-        .skill-category {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
+        .skill-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             transition: var(--transition);
+            border-top: 4px solid var(--primary);
         }
 
-        .skill-category:hover {
-            transform: translateY(-5px);
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-dark);
         }
 
-        .skill-category h3 {
+        .skill-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(108, 99, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
             color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
+        }
+
+        .skill-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
         }
 
         /* Projects Section */
+        .projects {
+            background: var(--light);
+        }
+
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
+            gap: 30px;
         }
 
         .project-card {
-            background: white;
-            border-radius: 15px;
+            background: var(--white);
+            border-radius: var(--border-radius);
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
         }
 
         .project-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px);
+            box-shadow: var(--shadow-dark);
         }
 
         .project-image {
             width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            height: 220px;
+            background: var(--gradient);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 3rem;
+            color: var(--white);
+            font-size: 3.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.1);
         }
 
         .project-content {
-            padding: 1.5rem;
+            padding: 25px;
         }
 
         .project-content h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            color: var(--dark);
+            font-size: 1.4rem;
+            margin-bottom: 10px;
         }
 
         .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .tech-tag {
+            background: rgba(108, 99, 255, 0.1);
             color: var(--primary);
-            font-weight: 600;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
         }
 
         .project-links {
             display: flex;
-            gap: 1rem;
+            gap: 15px;
         }
 
         /* Experience Section */
+        .experience {
+            background: var(--white);
+        }
+
         .timeline {
             position: relative;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
@@ -342,13 +498,13 @@
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            width: 2px;
+            width: 3px;
             height: 100%;
-            background: var(--primary);
+            background: var(--gradient);
         }
 
         .timeline-item {
-            margin-bottom: 3rem;
+            margin-bottom: 60px;
             position: relative;
             width: 45%;
         }
@@ -362,133 +518,255 @@
         }
 
         .timeline-content {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 10px;
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             position: relative;
+            transition: var(--transition);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-dark);
         }
 
         .timeline-content::before {
             content: '';
             position: absolute;
-            top: 20px;
+            top: 30px;
             width: 20px;
             height: 20px;
-            background: var(--primary);
+            background: var(--white);
+            border: 4px solid var(--primary);
             border-radius: 50%;
         }
 
         .timeline-item:nth-child(odd) .timeline-content::before {
-            right: -50px;
+            right: -55px;
         }
 
         .timeline-item:nth-child(even) .timeline-content::before {
-            left: -50px;
+            left: -55px;
+        }
+
+        .timeline-date {
+            display: inline-block;
+            background: var(--gradient);
+            color: var(--white);
+            padding: 6px 15px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 15px;
         }
 
         /* Contact Section */
+        .contact {
+            background: var(--light);
+        }
+
         .contact-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: 60px;
         }
 
         .contact-info {
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 25px;
         }
 
         .contact-item {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            background: white;
-            border-radius: 10px;
+            gap: 20px;
+            padding: 25px;
+            background: var(--white);
+            border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             transition: var(--transition);
         }
 
         .contact-item:hover {
             transform: translateX(10px);
+            box-shadow: var(--shadow-dark);
         }
 
         .contact-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: var(--white);
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .contact-details h3 {
             font-size: 1.2rem;
+            margin-bottom: 5px;
         }
 
         .contact-form {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
+            background: var(--white);
+            padding: 40px;
+            border-radius: var(--border-radius);
             box-shadow: var(--shadow);
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 25px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--dark);
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text);
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 1rem;
-            border: 2px solid #e2e8f0;
+            padding: 15px 20px;
+            border: 2px solid #EFF2F7;
             border-radius: 10px;
             font-size: 1rem;
             transition: var(--transition);
+            font-family: 'Poppins', sans-serif;
         }
 
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
             border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
         }
 
         /* Footer */
         footer {
             background: var(--dark);
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-about .logo {
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .footer-about p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 25px;
+            max-width: 400px;
         }
 
         .social-links {
             display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin: 1rem 0;
+            gap: 15px;
         }
 
         .social-links a {
-            color: white;
-            font-size: 1.5rem;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
             transition: var(--transition);
         }
 
         .social-links a:hover {
-            color: var(--accent);
-            transform: translateY(-3px);
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .footer-links h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-links h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
         }
 
         /* Responsive */
+        @media (max-width: 992px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .profile-container {
+                width: 320px;
+                height: 320px;
+                margin: 0 auto;
+            }
+        }
+
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -498,16 +776,12 @@
                 display: block;
             }
 
-            .hero h1 {
-                font-size: 2.5rem;
+            .hero-title {
+                font-size: 2.8rem;
             }
 
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-container {
-                grid-template-columns: 1fr;
+            .section-title {
+                font-size: 2.3rem;
             }
 
             .timeline::before {
@@ -523,14 +797,39 @@
             .timeline-content::before {
                 left: 20px !important;
             }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .profile-container {
+                width: 280px;
+                height: 280px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">Marcelle Larissa</div>
+        <div class="container nav-container">
+            <a href="#" class="logo">Marcelle Tchouamouo</a>
             <ul class="nav-links">
                 <li><a href="#accueil">Accueil</a></li>
                 <li><a href="#apropos">À Propos</a></li>
@@ -546,103 +845,162 @@
 
     <!-- Hero Section -->
     <section id="accueil" class="hero">
-        <div class="hero-content">
-            <div class="profile-container">
-                <img src="images/05fedfd-8eae-4778-9870-1c2dff8bd6f7.jpeg" alt="Marcelle Larissa" class="profile-image" id="profileImage">
-                <button class="change-photo-btn" onclick="changeProfilePhoto()">
-                    <i class="fas fa-camera"></i>
-                </button>
+        <div class="container hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">
+                    <i class="fas fa-rocket"></i> Développeuse FullStack
+                </div>
+                <h1 class="hero-title">Marcelle <span>Tchouamouo</span></h1>
+                <p class="hero-description">
+                    Passionnée par la création de solutions innovantes dans la FinTech et les systèmes distribués. 
+                    Je transforme des idées en applications web performantes et évolutives.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projets" class="btn btn-primary">
+                        <i class="fas fa-code"></i>Mes Projets
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-paper-plane"></i>Me Contacter
+                    </a>
+                </div>
             </div>
-            <h1>Marcelle Larissa Tankui Tchouamouo</h1>
-            <div class="title">Développeuse FullStack | Spécialisée FinTech & Systèmes Distribués</div>
-            <div class="cta-buttons">
-                <a href="#projets" class="btn btn-primary">
-                    <i class="fas fa-rocket"></i>Voir mes Projets
-                </a>
-                <a href="#contact" class="btn btn-secondary">
-                    <i class="fas fa-paper-plane"></i>Me Contacter
-                </a>
+            <div class="hero-image">
+                <div class="profile-container">
+                    <img src="images/05fedfd-8eae-4778-9870-1c2dff8bd6f7.jpeg" alt="Marcelle Tchouamouo" class="profile-image" id="profileImage">
+                    <button class="change-photo-btn" onclick="changeProfilePhoto()">
+                        <i class="fas fa-camera"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="apropos">
-        <h2 class="section-title">À Propos de Moi</h2>
-        <div class="about-content">
-            <div class="about-text">
-                <p>Diplômée en Génie Logiciel, je suis passionnée par la création de solutions innovantes dans la FinTech et les systèmes distribués. Mon expertise couvre le développement d'applications web sécurisées, la conception d'APIs robustes et l'intégration de protocoles complexes.</p>
-                <p>Je m'efforce constamment d'élargir mes compétences et de rester à jour avec les dernières technologies pour fournir des solutions optimales et évolutives.</p>
+    <section id="apropos" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">À Propos de Moi</h2>
+                <p class="section-subtitle">Découvrez mon parcours, mes compétences et ma passion pour le développement</p>
             </div>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Backend</h3>
-                    <p>Node.js, Express, Django, PHP</p>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        Diplômée en Génie Logiciel, je suis passionnée par la création de solutions innovantes 
+                        dans la FinTech et les systèmes distribués. Mon expertise couvre le développement 
+                        d'applications web sécurisées, la conception d'APIs robustes et l'intégration de 
+                        protocoles complexes.
+                    </p>
+                    <p>
+                        Je m'efforce constamment d'élargir mes compétences et de rester à jour avec les 
+                        dernières technologies pour fournir des solutions optimales et évolutives. Mon objectif 
+                        est de créer des produits qui allient performance, sécurité et expérience utilisateur 
+                        exceptionnelle.
+                    </p>
+                    <div class="hero-buttons" style="margin-top: 30px;">
+                        <a href="#contact" class="btn btn-primary">
+                            <i class="fas fa-download"></i>Télécharger CV
+                        </a>
+                    </div>
                 </div>
-                <div class="skill-category">
-                    <h3>Frontend</h3>
-                    <p>React.js, JavaScript ES6+, HTML5, CSS3, Bootstrap</p>
-                </div>
-                <div class="skill-category">
-                    <h3>Bases de données</h3>
-                    <p>MongoDB, MySQL, Redis</p>
-                </div>
-                <div class="skill-category">
-                    <h3>Outils & Méthodes</h3>
-                    <p>Git, GitHub, Postman, APIs REST, Conception UML</p>
+                <div class="skills-container">
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h3>Backend</h3>
+                        <p>Node.js, Express, Django, PHP, APIs REST, Sécurité</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <h3>Frontend</h3>
+                        <p>React.js, JavaScript, HTML5, CSS3, Bootstrap, Responsive Design</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3>Bases de données</h3>
+                        <p>MongoDB, MySQL, Redis, Modélisation, Optimisation</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3>Outils & Méthodes</h3>
+                        <p>Git, GitHub, Postman, Conception UML, Méthodes Agiles</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projets">
-        <h2 class="section-title">Mes Projets</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-image">
-                    <i class="fas fa-leaf"></i>
-                </div>
-                <div class="project-content">
-                    <h3>Gestion des Plantes d'Intérieur</h3>
-                    <div class="project-tech">React.js · Node.js · MongoDB</div>
-                    <p>Application complète de suivi et gestion des plantes avec système de rappels d'arrosage et analytics de croissance.</p>
-                    <div class="project-links">
-                        <a href="https://github.com/MarcelleT01/plant-care-app" class="btn btn-primary">
-                            <i class="fab fa-github"></i>Code
-                        </a>
+    <section id="projets" class="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Mes Projets</h2>
+                <p class="section-subtitle">Découvrez une sélection de mes réalisations techniques les plus significatives</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Gestion des Plantes d'Intérieur</h3>
+                        <div class="project-tech">
+                            <span class="tech-tag">React.js</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                        <p>Application complète de suivi et gestion des plantes avec système de rappels d'arrosage, surveillance de santé et analytics de croissance.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/MarcelleT01/plant-care-app" class="btn btn-primary">
+                                <i class="fab fa-github"></i>Code Source
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="project-card">
-                <div class="project-image">
-                    <i class="fas fa-money-bill-wave"></i>
-                </div>
-                <div class="project-content">
-                    <h3>Paiement de Factures</h3>
-                    <div class="project-tech">React.js · Node.js · API Campay</div>
-                    <p>Interface de paiement sécurisée pour transactions mobiles avec intégration de l'API Campay.</p>
-                    <div class="project-links">
-                        <a href="https://github.com/MarcelleT01/app-paiement-facture" class="btn btn-primary">
-                            <i class="fab fa-github"></i>Code
-                        </a>
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Paiement de Factures</h3>
+                        <div class="project-tech">
+                            <span class="tech-tag">React.js</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">API Campay</span>
+                        </div>
+                        <p>Interface de paiement sécurisée pour transactions mobiles avec intégration de l'API Campay et backend dédié à la gestion des opérations financières.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/MarcelleT01/app-paiement-facture" class="btn btn-primary">
+                                <i class="fab fa-github"></i>Code Source
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="project-card">
-                <div class="project-image">
-                    <i class="fas fa-quote-right"></i>
-                </div>
-                <div class="project-content">
-                    <h3>API DailyQuotes</h3>
-                    <div class="project-tech">Node.js · MongoDB · Postman</div>
-                    <p>API REST complète pour la gestion de citations inspirantes avec documentation détaillée.</p>
-                    <div class="project-links">
-                        <a href="https://github.com/MarcelleT01/dailyquotes-api" class="btn btn-primary">
-                            <i class="fab fa-github"></i>Code
-                        </a>
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-quote-right"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>API DailyQuotes</h3>
+                        <div class="project-tech">
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">Postman</span>
+                        </div>
+                        <p>API REST complète pour la gestion d'une collection de citations inspirantes, avec documentation détaillée et système CRUD.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/MarcelleT01/dailyquotes-api" class="btn btn-primary">
+                                <i class="fab fa-github"></i>Code Source
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -650,103 +1008,165 @@
     </section>
 
     <!-- Experience Section -->
-    <section id="experience">
-        <h2 class="section-title">Expérience Professionnelle</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <h3>Localhost Academy</h3>
-                    <div class="timeline-date">Juin 2023 - Octobre 2023</div>
-                    <p>Développement d'une application web de gestion et suivi des apprenants avec fonctionnalités CRUD, recherche/filtrage et tableau de bord.</p>
-                    <div class="project-tech">PHP · JavaScript · MySQL · Bootstrap</div>
-                </div>
+    <section id="experience" class="experience">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Expérience Professionnelle</h2>
+                <p class="section-subtitle">Mon parcours et mes réalisations dans le domaine du développement</p>
             </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Juin 2023 - Octobre 2023</span>
+                        <h3>Localhost Academy</h3>
+                        <h4>Stagiaire Développement Web</h4>
+                        <p>Développement d'une application web de gestion et suivi des apprenants avec fonctionnalités CRUD, recherche/filtrage et tableau de bord.</p>
+                        <div class="project-tech" style="margin-top: 15px;">
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">Bootstrap</span>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <h3>Regard'Afrik TV</h3>
-                    <div class="timeline-date">Avril 2025 - Juillet 2025</div>
-                    <p>Conception et développement d'une plateforme web multi-chaines avec intégration du protocole HLS pour la diffusion de contenus vidéo.</p>
-                    <div class="project-tech">HLS · UML · Streaming · Conception</div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Avril 2025 - Juillet 2025</span>
+                        <h3>Regard'Afrik TV</h3>
+                        <h4>Stagiaire Développement Web</h4>
+                        <p>Conception et développement d'une plateforme web multi-chaines avec intégration du protocole HLS pour la diffusion de contenus vidéo.</p>
+                        <div class="project-tech" style="margin-top: 15px;">
+                            <span class="tech-tag">HLS</span>
+                            <span class="tech-tag">UML</span>
+                            <span class="tech-tag">Streaming</span>
+                            <span class="tech-tag">Conception</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact">
-        <h2 class="section-title">Contact</h2>
-        <div class="contact-container">
-            <div class="contact-info">
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div>
-                        <h3>Email</h3>
-                        <p>mtchouamouo@gmail.com</p>
-                    </div>
-                </div>
-
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-phone"></i>
-                    </div>
-                    <div>
-                        <h3>Téléphone</h3>
-                        <p>(+237) 692829031</p>
-                    </div>
-                </div>
-
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fab fa-github"></i>
-                    </div>
-                    <div>
-                        <h3>GitHub</h3>
-                        <p>MarcelleT01</p>
-                    </div>
-                </div>
-
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fab fa-linkedin"></i>
-                    </div>
-                    <div>
-                        <h3>LinkedIn</h3>
-                        <p>Marcelle Tchouamouo</p>
-                    </div>
-                </div>
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contact</h2>
+                <p class="section-subtitle">N'hésitez pas à me contacter pour discuter de vos projets ou opportunités</p>
             </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p>mtchouamouo@gmail.com</p>
+                        </div>
+                    </div>
 
-            <form class="contact-form" id="contactForm">
-                <div class="form-group">
-                    <label for="name">Nom</label>
-                    <input type="text" id="name" required>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Téléphone</h3>
+                            <p>(+237) 692829031</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>GitHub</h3>
+                            <p>github.com/MarcelleT01</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-linkedin"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>LinkedIn</h3>
+                            <p>linkedin.com/in/marcelle-tchouamouo</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" rows="5" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-paper-plane"></i>Envoyer le Message
-                </button>
-            </form>
+
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Nom Complet</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Adresse Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Sujet</label>
+                        <input type="text" id="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>Envoyer le Message
+                    </button>
+                </form>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="social-links">
-            <a href="https://github.com/MarcelleT01"><i class="fab fa-github"></i></a>
-            <a href="https://linkedin.com/in/marcelle-tchouamouo"><i class="fab fa-linkedin"></i></a>
-            <a href="mailto:mtchouamouo@gmail.com"><i class="fas fa-envelope"></i></a>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="#" class="logo">Marcelle Tchouamouo</a>
+                    <p>
+                        Développeuse FullStack passionnée par la création de solutions innovantes 
+                        dans la FinTech et les systèmes distribués.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://github.com/MarcelleT01"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/marcelle-tchouamouo"><i class="fab fa-linkedin"></i></a>
+                        <a href="mailto:mtchouamouo@gmail.com"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Liens Rapides</h3>
+                    <ul>
+                        <li><a href="#accueil">Accueil</a></li>
+                        <li><a href="#apropos">À Propos</a></li>
+                        <li><a href="#projets">Projets</a></li>
+                        <li><a href="#experience">Expérience</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Compétences</h3>
+                    <ul>
+                        <li><a href="#apropos">Développement FullStack</a></li>
+                        <li><a href="#apropos">Applications FinTech</a></li>
+                        <li><a href="#apropos">Systèmes Distribués</a></li>
+                        <li><a href="#apropos">APIs REST</a></li>
+                        <li><a href="#apropos">Conception UML</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Marcelle Tchouamouo. Tous droits réservés.</p>
+            </div>
         </div>
-        <p>&copy; 2024 Marcelle Larissa Tankui Tchouamouo. Tous droits réservés.</p>
     </footer>
 
     <script>
@@ -762,6 +1182,8 @@
                     const reader = new FileReader();
                     reader.onload = function(e) {
                         document.getElementById('profileImage').src = e.target.result;
+                        // Sauvegarder dans le localStorage pour persistance
+                        localStorage.setItem('profilePhoto', e.target.result);
                     };
                     reader.readAsDataURL(file);
                 }
@@ -770,15 +1192,50 @@
             input.click();
         }
 
+        // Charger la photo sauvegardée si elle existe
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedPhoto = localStorage.getItem('profilePhoto');
+            if (savedPhoto) {
+                document.getElementById('profileImage').src = savedPhoto;
+            }
+        });
+
+        // Navigation scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
         // Navigation mobile
         document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('.nav-links').classList.toggle('active');
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
         });
 
         // Formulaire de contact
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Merci pour votre message ! Je vous répondrai très rapidement.');
+            
+            // Récupérer les données du formulaire
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+            
+            // Ici, vous intégreriez normalement un service comme EmailJS ou un backend
+            // Pour cette démo, nous simulons l'envoi
+            console.log('Données du formulaire:', formData);
+            
+            // Message de succès
+            alert('Merci pour votre message ' + formData.name + ' ! Je vous répondrai très rapidement à ' + formData.email);
+            
+            // Réinitialiser le formulaire
             this.reset();
         });
 
@@ -798,10 +1255,10 @@
         }, observerOptions);
 
         // Observer les éléments à animer
-        document.querySelectorAll('.skill-category, .project-card, .timeline-content, .contact-item').forEach(el => {
+        document.querySelectorAll('.skill-card, .project-card, .timeline-content, .contact-item').forEach(el => {
             el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
             observer.observe(el);
         });
     </script>
