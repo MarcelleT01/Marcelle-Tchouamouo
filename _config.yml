@@ -5,39 +5,47 @@ description: "Portfolio professionnel - Développeuse FullStack spécialisée Fi
 baseurl: ""
 url: "https://MarcelleT01.github.io"
 github_username: MarcelleT01
-logo: img/05fedfd-8eae-4778-9870-1c2dff8bd6f7.jpeg
 
 # Paramètres Jekyll
-theme: jekyll-theme-minimal
+remote_theme: pages-themes/cayman@v0.2.0
 plugins:
+  - jekyll-remote-theme
   - jekyll-seo-tag
   - jekyll-sitemap
+  - jekyll-feed
 
 # Paramètres auteur
 author:
   name: "Marcelle Larissa Tankui Tchouamouo"
   email: "mtchouamouo@gmail.com"
   description: "Développeuse FullStack | Spécialisée FinTech et Systèmes Distribués"
+  avatar: "images/05fedfd-8eae-4778-9870-1c2dff8bd6f7.jpeg"  # Chemin direct vers ta photo
+
+# Personnalisation du thème
+theme_color: "auto"
+show_downloads: false
+logo: "image/05fedfd-8eae-4778-9870-1c2dff8bd6f7.jpeg"  # Photo dans le header
 
 # Construction
 markdown: kramdown
 highlighter: rouge
 permalink: pretty
 
-# Personnalisation
-header_pages:
-  - README.md
-
 # Paramètres SEO
 lang: "fr"
 locale: "fr_FR"
 
-# Social links (optionnel - pour extensions futures)
+# Social links
 social:
   name: Marcelle Tchouamouo
   links:
     - "https://github.com/MarcelleT01"
     - "https://linkedin.com/in/marcelle-tchouamouo"
+    - "mailto:mtchouamouo@gmail.com"
+
+# Navigation
+header_pages:
+  - README.md
 
 # Exclude from processing
 exclude:
@@ -48,3 +56,5 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
+  - .github/
+  - .gitignore
