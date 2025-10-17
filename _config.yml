@@ -1,0 +1,49 @@
+# Fichier de configuration pour GitHub Pages (Jekyll)
+
+title: "Marcelle Larissa Tankui Tchouamouo - Développeuse FullStack"
+description: "Portfolio professionnel - Développeuse FullStack spécialisée FinTech et systèmes distribués"
+baseurl: ""
+url: "https://MarcelleT01.github.io"
+github_username: MarcelleT01
+
+# Paramètres Jekyll
+theme: jekyll-theme-minimal
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Paramètres auteur
+author:
+  name: "Marcelle Larissa Tankui Tchouamouo"
+  email: "mtchouamouo@gmail.com"
+  description: "Développeuse FullStack | Spécialisée FinTech et Systèmes Distribués"
+
+# Construction
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+
+# Personnalisation
+header_pages:
+  - README.md
+
+# Paramètres SEO
+lang: "fr"
+locale: "fr_FR"
+
+# Social links (optionnel - pour extensions futures)
+social:
+  name: Marcelle Tchouamouo
+  links:
+    - "https://github.com/MarcelleT01"
+    - "https://linkedin.com/in/marcelle-tchouamouo"
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
