@@ -8,18 +8,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #FF6B6B;
-            --primary-dark: #EE5A52;
-            --secondary: #4ECDC4;
-            --accent: #45B7D1;
-            --dark: #2A2D43;
-            --light: #F7F9FC;
-            --text: #2A2D43;
-            --text-light: #6C757D;
-            --white: #FFFFFF;
+            --primary: #8B4513;
+            --primary-dark: #654321;
+            --secondary: #228B22;
+            --accent: #DAA520;
+            --dark: #2F4F4F;
+            --light: #F5F5DC;
+            --text: #2F4F4F;
+            --text-light: #696969;
+            --white: #FFF8DC;
             --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            --gradient-dark: linear-gradient(135deg, var(--primary-dark) 0%, #3DA4AB 100%);
-            --shadow: 0 10px 30px rgba(255, 107, 107, 0.15);
+            --gradient-dark: linear-gradient(135deg, var(--primary-dark) 0%, #006400 100%);
+            --shadow: 0 10px 30px rgba(139, 69, 19, 0.15);
             --shadow-dark: 0 15px 40px rgba(0, 0, 0, 0.1);
             --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             --border-radius: 16px;
@@ -131,7 +131,7 @@
 
         .btn-primary:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(255, 107, 107, 0.3);
+            box-shadow: 0 15px 30px rgba(139, 69, 19, 0.3);
         }
 
         .btn-secondary {
@@ -152,7 +152,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(245, 245, 220, 0.95);
             backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 20px 0;
@@ -258,7 +258,7 @@
 
         .hero-badge {
             display: inline-block;
-            background: rgba(255, 107, 107, 0.1);
+            background: rgba(139, 69, 19, 0.1);
             color: var(--primary);
             padding: 8px 20px;
             border-radius: 50px;
@@ -346,6 +346,28 @@
             color: var(--white);
         }
 
+        /* Code Preview */
+        .code-preview {
+            background: #1E1E1E;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .code-line {
+            color: #D4D4D4;
+        }
+        .code-comment { color: #6A9955; }
+        .code-keyword { color: #569CD6; }
+        .code-function { color: #DCDCAA; }
+        .code-string { color: #CE9178; }
+        .code-number { color: #B5CEA8; }
+        .code-operator { color: #D4D4D4; }
+
         /* About Section */
         .about {
             background: var(--white);
@@ -390,7 +412,7 @@
         .skill-icon {
             width: 60px;
             height: 60px;
-            background: rgba(255, 107, 107, 0.1);
+            background: rgba(139, 69, 19, 0.1);
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -469,7 +491,7 @@
         }
 
         .tech-tag {
-            background: rgba(255, 107, 107, 0.1);
+            background: rgba(139, 69, 19, 0.1);
             color: var(--primary);
             padding: 5px 12px;
             border-radius: 50px;
@@ -634,18 +656,19 @@
         .form-group textarea {
             width: 100%;
             padding: 15px 20px;
-            border: 2px solid #EFF2F7;
+            border: 2px solid #E8E4D5;
             border-radius: 10px;
             font-size: 1rem;
             transition: var(--transition);
             font-family: 'Poppins', sans-serif;
+            background: var(--light);
         }
 
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+            box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
         }
 
         /* Footer */
@@ -939,6 +962,7 @@
                 <p class="section-subtitle">Découvrez une sélection de mes réalisations techniques les plus significatives</p>
             </div>
             <div class="projects-grid">
+                <!-- Projet 1: Gestion des Plantes -->
                 <div class="project-card">
                     <div class="project-image">
                         <i class="fas fa-leaf"></i>
@@ -949,8 +973,37 @@
                             <span class="tech-tag">React.js</span>
                             <span class="tech-tag">Node.js</span>
                             <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">Express</span>
                         </div>
                         <p>Application complète de suivi et gestion des plantes avec système de rappels d'arrosage, surveillance de santé et analytics de croissance.</p>
+                        
+                        <div class="code-preview">
+                            <div class="code-line"><span class="code-keyword">import</span> <span class="code-function">React</span> <span class="code-keyword">from</span> <span class="code-string">'react'</span>;</div>
+                            <div class="code-line"><span class="code-keyword">import</span> { <span class="code-function">useState</span>, <span class="code-function">useEffect</span> } <span class="code-keyword">from</span> <span class="code-string">'react'</span>;</div>
+                            <div class="code-line"><span class="code-keyword">import</span> <span class="code-function">PlantCard</span> <span class="code-keyword">from</span> <span class="code-string">'./components/PlantCard'</span>;</div>
+                            <div class="code-line"><span class="code-keyword">import</span> <span class="code-function">WateringSchedule</span> <span class="code-keyword">from</span> <span class="code-string">'./components/WateringSchedule'</span>;</div>
+                            <div class="code-line">&nbsp;</div>
+                            <div class="code-line"><span class="code-keyword">const</span> <span class="code-function">PlantDashboard</span> = () <span class="code-keyword">=></span> {</div>
+                            <div class="code-line">  <span class="code-keyword">const</span> [plants, setPlants] = <span class="code-function">useState</span>([]);</div>
+                            <div class="code-line">  <span class="code-keyword">const</span> [loading, setLoading] = <span class="code-function">useState</span>(<span class="code-keyword">true</span>);</div>
+                            <div class="code-line">&nbsp;</div>
+                            <div class="code-line">  <span class="code-function">useEffect</span>(() <span class="code-keyword">=></span> {</div>
+                            <div class="code-line">    <span class="code-function">fetchPlants</span>();</div>
+                            <div class="code-line">  }, []);</div>
+                            <div class="code-line">&nbsp;</div>
+                            <div class="code-line">  <span class="code-keyword">const</span> <span class="code-function">fetchPlants</span> = <span class="code-keyword">async</span> () <span class="code-keyword">=></span> {</div>
+                            <div class="code-line">    <span class="code-keyword">try</span> {</div>
+                            <div class="code-line">      <span class="code-keyword">const</span> response = <span class="code-keyword">await</span> <span class="code-function">fetch</span>(<span class="code-string">'/api/plants'</span>);</div>
+                            <div class="code-line">      <span class="code-keyword">const</span> data = <span class="code-keyword">await</span> response.<span class="code-function">json</span>();</div>
+                            <div class="code-line">      <span class="code-function">setPlants</span>(data);</div>
+                            <div class="code-line">    } <span class="code-keyword">catch</span> (error) {</div>
+                            <div class="code-line">      <span class="code-function">console</span>.<span class="code-function">error</span>(<span class="code-string">'Error fetching plants:'</span>, error);</div>
+                            <div class="code-line">    } <span class="code-keyword">finally</span> {</div>
+                            <div class="code-line">      <span class="code-function">setLoading</span>(<span class="code-keyword">false</span>);</div>
+                            <div class="code-line">    }</div>
+                            <div class="code-line">  };</div>
+                        </div>
+                        
                         <div class="project-links">
                             <a href="https://github.com/MarcelleT01/plant-care-app" class="btn btn-primary">
                                 <i class="fab fa-github"></i>Code Source
@@ -959,6 +1012,7 @@
                     </div>
                 </div>
 
+                <!-- Projet 2: Paiement de Factures -->
                 <div class="project-card">
                     <div class="project-image">
                         <i class="fas fa-money-bill-wave"></i>
@@ -969,8 +1023,49 @@
                             <span class="tech-tag">React.js</span>
                             <span class="tech-tag">Node.js</span>
                             <span class="tech-tag">API Campay</span>
+                            <span class="tech-tag">MongoDB</span>
                         </div>
                         <p>Interface de paiement sécurisée pour transactions mobiles avec intégration de l'API Campay et backend dédié à la gestion des opérations financières.</p>
+                        
+                        <div class="code-preview">
+                            <div class="code-line"><span class="code-comment">// Service de traitement des paiements</span></div>
+                            <div class="code-line"><span class="code-keyword">const</span> <span class="code-function">processPayment</span> = <span class="code-keyword">async</span> (paymentData) <span class="code-keyword">=></span> {</div>
+                            <div class="code-line">  <span class="code-keyword">const</span> { amount, phone, reference } = paymentData;</div>
+                            <div class="code-line">&nbsp;</div>
+                            <div class="code-line">  <span class="code-comment">// Validation des données</span></div>
+                            <div class="code-line">  <span class="code-keyword">if</span> (!amount <span class="code-operator">||</span> !phone <span class="code-operator">||</span> !reference) {</div>
+                            <div class="code-line">    <span class="code-keyword">throw new</span> <span class="code-function">Error</span>(<span class="code-string">'Données de paiement incomplètes'</span>);</div>
+                            <div class="code-line">  }</div>
+                            <div class="code-line">&nbsp;</div>
+                            <div class="code-line">  <span class="code-comment">// Configuration API Campay</span></div>
+                            <div class="code-line">  <span class="code-keyword">const</span> campayConfig = {</div>
+                            <div class="code-line">    amount: amount,</div>
+                            <div class="code-line">    currency: <span class="code-string">'XAF'</span>,</div>
+                            <div class="code-line">    from: phone,</div>
+                            <div class="code-line">    description: <span class="code-string">`Paiement facture <span class="code-operator">${</span>reference<span class="code-operator">}</span>`</span>,</div>
+                            <div class="code-line">    external_reference: reference</div>
+                            <div class="code-line">  };</div>
+                            <div class="code-line">&nbsp;</div>
+                            <div class="code-line">  <span class="code-keyword">try</span> {</div>
+                            <div class="code-line">    <span class="code-comment">// Appel à l'API Campay</span></div>
+                            <div class="code-line">    <span class="code-keyword">const</span> response = <span class="code-keyword">await</span> <span class="code-function">fetch</span>(<span class="code-string">'https://api.campay.net/collect/'</span>, {</div>
+                            <div class="code-line">      method: <span class="code-string">'POST'</span>,</div>
+                            <div class="code-line">      headers: {</div>
+                            <div class="code-line">        <span class="code-string">'Authorization'</span>: <span class="code-string">`Bearer <span class="code-operator">${</span>process.env.CAMPAY_TOKEN<span class="code-operator">}</span>`</span>,</div>
+                            <div class="code-line">        <span class="code-string">'Content-Type'</span>: <span class="code-string">'application/json'</span></div>
+                            <div class="code-line">      },</div>
+                            <div class="code-line">      body: <span class="code-function">JSON</span>.<span class="code-function">stringify</span>(campayConfig)</div>
+                            <div class="code-line">    });</div>
+                            <div class="code-line">&nbsp;</div>
+                            <div class="code-line">    <span class="code-keyword">const</span> result = <span class="code-keyword">await</span> response.<span class="code-function">json</span>();</div>
+                            <div class="code-line">    <span class="code-keyword">return</span> result;</div>
+                            <div class="code-line">  } <span class="code-keyword">catch</span> (error) {</div>
+                            <div class="code-line">    <span class="code-function">console</span>.<span class="code-function">error</span>(<span class="code-string">'Payment processing error:'</span>, error);</div>
+                            <div class="code-line">    <span class="code-keyword">throw</span> error;</div>
+                            <div class="code-line">  }</div>
+                            <div class="code-line">};</div>
+                        </div>
+                        
                         <div class="project-links">
                             <a href="https://github.com/MarcelleT01/app-paiement-facture" class="btn btn-primary">
                                 <i class="fab fa-github"></i>Code Source
@@ -979,6 +1074,7 @@
                     </div>
                 </div>
 
+                <!-- Projet 3: API DailyQuotes -->
                 <div class="project-card">
                     <div class="project-image">
                         <i class="fas fa-quote-right"></i>
@@ -988,9 +1084,57 @@
                         <div class="project-tech">
                             <span class="tech-tag">Node.js</span>
                             <span class="tech-tag">MongoDB</span>
-                            <span class="tech-tag">Postman</span>
+                            <span class="tech-tag">Express</span>
+                            <span class="tech-tag">JWT</span>
                         </div>
                         <p>API REST complète pour la gestion d'une collection de citations inspirantes, avec documentation détaillée et système CRUD.</p>
+                        
+                        <div class="code-preview">
+                            <div class="code-line"><span class="code-comment">// Modèle de données pour les citations</span></div>
+                            <div class="code-line"><span class="code-keyword">const</span> mongoose = <span class="code-function">require</span>(<span class="code-string">'mongoose'</span>);</div>
+                            <div class="code-line">&nbsp;</div>
+                            <div class="code-line"><span class="code-keyword">const</span> quoteSchema = <span class="code-keyword">new</span> mongoose.<span class="code-function">Schema</span>({</div>
+                            <div class="code-line">  text: {</div>
+                            <div class="code-line">    type: <span class="code-function">String</span>,</div>
+                            <div class="code-line">    required: <span class="code-keyword">true</span>,</div>
+                            <div class="code-line">    maxlength: <span class="code-number">500</span></div>
+                            <div class="code-line">  },</div>
+                            <div class="code-line">  author: {</div>
+                            <div class="code-line">    type: <span class="code-function">String</span>,</div>
+                            <div class="code-line">    required: <span class="code-keyword">true</span>,</div>
+                            <div class="code-line">    maxlength: <span class="code-number">100</span></div>
+                            <div class="code-line">  },</div>
+                            <div class="code-line">  category: {</div>
+                            <div class="code-line">    type: <span class="code-function">String</span>,</div>
+                            <div class="code-line">    enum: [<span class="code-string">'inspiration'</span>, <span class="code-string">'motivation'</span>, <span class="code-string">'success'</span>, <span class="code-string">'life'</span>],</div>
+                            <div class="code-line">    default: <span class="code-string">'inspiration'</span></div>
+                            <div class="code-line">  },</div>
+                            <div class="code-line">  likes: {</div>
+                            <div class="code-line">    type: <span class="function">Number</span>,</div>
+                            <div class="code-line">    default: <span class="code-number">0</span></div>
+                            <div class="code-line">  }</div>
+                            <div class="code-line">}, {</div>
+                            <div class="code-line">  timestamps: <span class="code-keyword">true</span></div>
+                            <div class="code-line">});</div>
+                            <div class="code-line">&nbsp;</div>
+                            <div class="code-line"><span class="code-comment">// Route pour récupérer une citation aléatoire</span></div>
+                            <div class="code-line">router.<span class="code-function">get</span>(<span class="code-string">'/random'</span>, <span class="code-keyword">async</span> (req, res) <span class="code-keyword">=></span> {</div>
+                            <div class="code-line">  <span class="code-keyword">try</span> {</div>
+                            <div class="code-line">    <span class="code-keyword">const</span> count = <span class="code-keyword">await</span> Quote.<span class="code-function">countDocuments</span>();</div>
+                            <div class="code-line">    <span class="code-keyword">const</span> random = <span class="code-function">Math</span>.<span class="code-function">floor</span>(<span class="code-function">Math</span>.<span class="code-function">random</span>() * count);</div>
+                            <div class="code-line">    <span class="code-keyword">const</span> quote = <span class="code-keyword">await</span> Quote.<span class="code-function">findOne</span>().<span class="code-function">skip</span>(random);</div>
+                            <div class="code-line">    </div>
+                            <div class="code-line">    <span class="code-keyword">if</span> (!quote) {</div>
+                            <div class="code-line">      <span class="code-keyword">return</span> res.<span class="code-function">status</span>(<span class="code-number">404</span>).<span class="code-function">json</span>({ message: <span class="code-string">'Aucune citation trouvée'</span> });</div>
+                            <div class="code-line">    }</div>
+                            <div class="code-line">    </div>
+                            <div class="code-line">    res.<span class="code-function">json</span>(quote);</div>
+                            <div class="code-line">  } <span class="code-keyword">catch</span> (error) {</div>
+                            <div class="code-line">    res.<span class="code-function">status</span>(<span class="code-number">500</span>).<span class="code-function">json</span>({ message: error.message });</div>
+                            <div class="code-line">  }</div>
+                            <div class="code-line">});</div>
+                        </div>
+                        
                         <div class="project-links">
                             <a href="https://github.com/MarcelleT01/dailyquotes-api" class="btn btn-primary">
                                 <i class="fab fa-github"></i>Code Source
