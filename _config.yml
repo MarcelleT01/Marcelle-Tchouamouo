@@ -5,7 +5,7 @@ description: "Portfolio professionnel - Développeuse FullStack spécialisée Fi
 baseurl: ""
 url: "https://MarcelleT01.github.io"
 github_username: MarcelleT01
-logo: img/05fedfd-8eae-4778-9870-1c2dff8bd6f7.jpeg
+logo: /05fedfd-8eae-4778-9870-1c2dff8bd6f7.jpeg
 
 # Paramètres Jekyll
 theme: jekyll-theme-minimal
