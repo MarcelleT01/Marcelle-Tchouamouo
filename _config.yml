@@ -19,7 +19,7 @@ author:
   name: "Marcelle Larissa Tankui Tchouamouo"
   email: "mtchouamouo@gmail.com"
   description: "Développeuse FullStack | Spécialisée FinTech et Systèmes Distribués"
-  avatar: "images/05fedfd-8eae-4778-9870-1c2dff8bd6f7.jpeg"  # Chemin direct vers ta photo
+  avatar: "image/05fe9dfd-8eae-4778-9870-1c2dff8bd6f7.jpeg"  # Chemin direct vers ta photo
 
 # Personnalisation du thème
 theme_color: "auto"
